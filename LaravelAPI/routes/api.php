@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiAuthController;
 use App\Http\Controllers\QuoteController;
 use App\Models\Quote;
 use Illuminate\Http\Request;
@@ -26,4 +27,10 @@ Route::get('/hello', function () {
     return response()->json($data,200);
 });
 
-Route::apiResource('/quote',QuoteController::class);
+Route::middleware('auth:santum')->group(function(){
+    Route::apiResource('/quote',QuoteController::class);
+});
+
+Route::post('/login',[ApiAuthController::class,'login']);
+Route::post('/register',[ApiAuthController::class,'register']);
+
