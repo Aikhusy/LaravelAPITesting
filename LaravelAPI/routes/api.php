@@ -23,14 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/hello', function () {
-    $data= ["message"=>"hello world"];
-    return response()->json($data,200);
+    $data = ["message" => "hello world"];
+    return response()->json($data, 200);
 });
 
-Route::middleware('auth:santum')->group(function(){
-    Route::apiResource('/quote',QuoteController::class);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('/quote', QuoteController::class);
+    Route::post('/logout', [ApiAuthController::class, 'logout']);
 });
 
-Route::post('/login',[ApiAuthController::class,'login']);
-Route::post('/register',[ApiAuthController::class,'register']);
-
+Route::post('/login', [ApiAuthController::class, 'login']);
+Route::post('/register', [ApiAuthController::class, 'register']);
