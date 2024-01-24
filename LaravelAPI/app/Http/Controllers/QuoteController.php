@@ -73,5 +73,7 @@ class QuoteController extends Controller
     public function destroy(Quote $quote)
     {
         //
+        $quote->delete();
+        return response()->noContent();
     }
 }
