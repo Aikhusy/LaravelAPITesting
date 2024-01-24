@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ApiAuthController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\QuoteController;
 use App\Models\Quote;
 use Illuminate\Http\Request;
@@ -34,3 +35,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/login', [ApiAuthController::class, 'login']);
 Route::post('/register', [ApiAuthController::class, 'register']);
+
+Route::post('/file-upload',[FileUploadController::class,'uploadFIle']);
