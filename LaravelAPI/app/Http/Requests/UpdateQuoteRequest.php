@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreQuoteRequest extends FormRequest
+class UpdateQuoteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +24,7 @@ class StoreQuoteRequest extends FormRequest
     {
         return [
             //
-            'text'=>'required|min:20|unique:quotes',
+            'text'=>'required|min:20'. Rule::unique('quotes')->ignore($this->quote),
             'author'=>'required|min:10'
         ];
     }
